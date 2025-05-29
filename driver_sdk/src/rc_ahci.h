@@ -19,7 +19,6 @@
  *
  ****************************************************************************/
 
-#ifdef RC_AHCI_SUPPORT
 // *FIX* I'm not sure why the linux top layer requires it's own
 // interrupt handler, initialization, etc.  This should be done at
 // the bottom layer (only..and in fact already is done at the bottom.)
@@ -35,4 +34,3 @@
 u32 rc_ahci_regread(void *context, u32 offset);
 void rc_ahci_regwrite(void *context, u32 offset, u32 value);
 
-#endif // RC_AHCI_SUPPORT

@@ -28,11 +28,8 @@ typedef unsigned short		rc_uint16_t;
 typedef unsigned int		rc_uint32_t;
 typedef int			rc_int32_t;
 
-#ifndef __LINUX__
-typedef unsigned long rc_uint64_t;
-#else
 typedef unsigned long long  rc_uint64_t;
-#endif
+
 
 typedef unsigned long       rc_uint_ptr_t;
 
