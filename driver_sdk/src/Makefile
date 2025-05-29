@@ -28,7 +28,7 @@
 RC_HOST=$(shell /bin/hostname)
 RC_USER=$(shell whoami)
 RC_DATE=$(shell /bin/date)
-RC_BUILD_DATE=$(shell /bin/date +'%b %d %Y')
+RC_BUILD_DATE=$(shell LC_TIME=en_US.UTF-8 /bin/date +'%b %d %Y')
 RCCERT=/var/lib/rccert/certs
 PLATFORM=$(shell uname -i)
 ifeq ($(PLATFORM), unknown)
@@ -42,7 +42,7 @@ EXTRA_CFLAGS += -DRC_RAW_PASSTHROUGH
 EXTRA_CFLAGS += -DRC_LSI1068
 EXTRA_CFLAGS += -DRC_MPT2
 EXTRA_CFLAGS += -DRC_DETECT_AND_BLOCK_PROMISE_RAID
-EXTRA_CFLAGS += -DRC_DRIVER_BUILD_DATE='"${RC_BUILD_DATE}"'
+EXTRA_CFLAGS += -DRC_DRIVER_BUILD_DATE="${RC_BUILD_DATE}"
 
 
 # Build against an installed kernel object tree.

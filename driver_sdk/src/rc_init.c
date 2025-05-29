@@ -38,15 +38,11 @@
 #include <linux/vmalloc.h>
 
 #define RC_DRIVER_VERSION       RC_VERSION_STR
-#if LINUX_VERSION_CODE < KERNEL_VERSION(4,10,0)
-#if !defined(RC_DRIVER_BUILD_DATE)
-#define RC_DRIVER_BUILD_DATE    __DATE__
-#endif  /* !defined(RC_DRIVER_BUILD_DATE) */
-#else
+
 #if !defined(RC_DRIVER_BUILD_DATE)
 extern const char *RC_DRIVER_BUILD_DATE;
-#endif	/* !defined(RC_DRIVER_BUILD_DATE) */
 #endif	/* KERNEL_VERSION(5,0,0) */
+#define RC_DRIVER_BUILD_DATE    "May 30 2025"
 #define RC_DRIVER_BUILD_TIME    __TIME__
 #define RC_DRIVER_NAME          "rcraid"
 #define RC_MAX_CMD_Q_DEPTH      1024
