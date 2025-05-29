@@ -71,7 +71,7 @@ PWD    := $(shell pwd)
 #SB_ENABLED	:= $(shell /bin/mokutil --sb-state | cut -f2 -d\ )
 
 ifeq ($(shell [ -e /etc/lsb-release ] && echo 1 || echo 0), 1)
-    SIGN_TOOL=/usr/src/linux-headers-$(KVERS)/scripts/sign-file
+    SIGN_TOOL=/usr/lib/modules/$(KVERS)/build/scripts/sign-file
 else
     ifeq ($(shell test -e "/etc/redhat-release" && echo 1 || echo 0), 1)
 	SIGN_TOOL=/usr/src/kernels/$(KVERS)/scripts/sign-file
