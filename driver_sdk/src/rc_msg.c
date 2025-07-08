@@ -85,9 +85,13 @@ int rc_srb_seq_num = 0;
 
 struct efi *get_efi(void);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6,6,0)
+static void rc_sysrq_intr (int key);
+static void rc_sysrq_state (int key);
+#else
 static void rc_sysrq_intr (unsigned char key);
-
 static void rc_sysrq_state (unsigned char key);
+#endif
 
 struct sysrq_key_op rc_skey_ops_intr = {
 handler:    rc_sysrq_intr,
@@ -2731,7 +2735,12 @@ rc_msg_stats(char *buf, int buf_size)
 	return(cnt);
 }
 
-static void rc_sysrq_intr (unsigned char key)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6,6,0)
+static void rc_sysrq_intr (int key
+#else
+static void rc_sysrq_intr (unsigned char key
+#endif
+)
 {
 	rc_softstate_t *state;
 
@@ -2748,7 +2757,12 @@ static void rc_sysrq_intr (unsigned char key)
 	rc_printk(RC_ALERT, "scheduling tasklet interrupt\n");
 }
 
-static void rc_sysrq_state (unsigned char key)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6,6,0)
+static void rc_sysrq_state (int key
+#else
+static void rc_sysrq_state (unsigned char key
+#endif
+)
 {
 
 	rc_msg_stats(rc_stats_buf, sizeof(rc_stats_buf));
